@@ -6,9 +6,9 @@ import (
 
 var TENANT_ID = []string{"1", "2", "3", "4", "5"}
 
-type Emitter interface {
-	generateRandomPulse() Pulse
-}
+// type Emitter interface {
+// 	generateRandomPulse() Pulse
+// }
 
 type Pulse struct {
 	Tenant     string
