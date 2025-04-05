@@ -21,7 +21,8 @@ type Pulse struct {
 // mock de dados de um pulse gerado
 func GenerateRandomPulse(day int) Pulse {
 	tenantName := "tenant_" + TENANT_ID[rand.Intn(len(TENANT_ID))]
-	amount := rand.Float64() * float64(rand.Intn(10000)+1) // ajustar isso, parece super não efetivo
+	amount := rand.Float64()*1000 + 1 // ajustar isso, parece super não efetivo
+	//
 
 	var newPulse Pulse
 	if rand.Intn(2) > 0 {
