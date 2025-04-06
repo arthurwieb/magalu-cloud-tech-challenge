@@ -11,9 +11,14 @@ func main() {
 
 	agg := aggregator.NewAggregator()
 
-	for range 5 {
-		randomPulse := pulsegenerator.GenerateRandomPulse(1)
-		agg.AddPulse(randomPulse)
+	// for que simula os dias no mes
+	for i := 1; i <= 30; i++ {
+		// simular pulsos diários
+		for range 20 {
+			randomPulse := pulsegenerator.GenerateRandomPulse(i)
+			agg.AddPulse(randomPulse)
+		}
+
 	}
 
 	fmt.Println(agg.GetTotals())

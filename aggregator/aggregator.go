@@ -1,7 +1,8 @@
 package aggregator
 
 import (
-	"fmt"
+	"strconv"
+	"sync"
 
 	"github.com/arthurwieb/magalu-cloud-tech-challenge/pulsegenerator"
 )
@@ -9,6 +10,7 @@ import (
 type Aggregator struct {
 	pulseChan chan pulsegenerator.Pulse
 	data      map[string]float64 // agrega dados internamente
+	mu        sync.Mutex         // para resolver problema de concorrencia
 }
 
 func NewAggregator() *Aggregator {
@@ -26,22 +28,12 @@ func (a *Aggregator) AddPulse(p pulsegenerator.Pulse) {
 }
 
 func (a *Aggregator) start() {
-	// for {
-	// 	// select seleciona alg
-	// 	select {
-	// 	case p := <-a.pulseChan:
-	// 		key := p.Tenant + "|" + p.ProductSKU + "|" + p.UsageUnit
-	// 		a.data[key] += p.UsedAmount
-	// 	default:
-	// 		close(a.pulseChan)
-	// 	}
-	// }
-
-	//TODO IMPLEMENTAR OS DIAS
 	for p := range a.pulseChan {
-		fmt.Println("Pulso gerado: ", p)
-		key := p.Tenant + "|" + p.ProductSKU + "|" + p.UsageUnit
+		// fmt.Println("Pulso gerado: ", p)
+		key := p.Tenant + "|" + p.ProductSKU + "|" + p.UsageUnit + "| dia:" + strconv.Itoa(p.Day) + "|"
+		a.mu.Lock()
 		a.data[key] += p.UsedAmount
+		a.mu.Unlock()
 	}
 }
 
@@ -51,5 +43,13 @@ func (a *Aggregator) Stop() {
 
 func (a *Aggregator) GetTotals() map[string]float64 {
 	a.Stop()
-	return a.data
+	a.mu.Lock()
+	defer a.mu.Unlock()
+
+	// cria uma copia para ler a data do aggregator, não fazendo isso pode ocorrer erro de concorrencia
+	result := make(map[string]float64)
+	for k, v := range a.data {
+		result[k] = v
+	}
+	return result
 }
