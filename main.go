@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/arthurwieb/magalu-cloud-tech-challenge/aggregator"
 	"github.com/arthurwieb/magalu-cloud-tech-challenge/pulsegenerator"
@@ -21,6 +22,10 @@ func main() {
 
 	}
 
-	fmt.Println(agg.GetTotals())
+	aggregatedData, err := agg.GetTotals()
+	if err != nil {
+		log.Fatal(err)
+	}
 
+	fmt.Println(string(aggregatedData))
 }

@@ -13,7 +13,7 @@ var TENANT_ID = []string{"1", "2", "3", "4", "5"}
 type Pulse struct {
 	Tenant     string
 	ProductSKU string
-	UsedAmount float64
+	UsedAmount float32
 	UsageUnit  string
 	Day        int // em um cenário real, seria um timestamp
 }
@@ -21,7 +21,7 @@ type Pulse struct {
 // mock de dados de um pulse gerado
 func GenerateRandomPulse(day int) Pulse {
 	tenantName := "tenant_" + TENANT_ID[rand.Intn(len(TENANT_ID))]
-	amount := rand.Float64()*100 + 1 // ajustar isso, parece super não efetivo
+	amount := rand.Float32()*100 + 1 // ajustar isso, parece super não efetivo
 
 	var newPulse Pulse
 	if rand.Intn(2) > 0 {
@@ -33,7 +33,7 @@ func GenerateRandomPulse(day int) Pulse {
 	return newPulse
 }
 
-func generateStoragePulse(Tenant string, amount float64, day int) Pulse {
+func generateStoragePulse(Tenant string, amount float32, day int) Pulse {
 
 	return Pulse{
 		Tenant:     Tenant,
@@ -44,7 +44,7 @@ func generateStoragePulse(Tenant string, amount float64, day int) Pulse {
 	}
 }
 
-func generateNetworkPulse(Tenant string, amount float64, day int) Pulse {
+func generateNetworkPulse(Tenant string, amount float32, day int) Pulse {
 
 	return Pulse{
 		Tenant:     Tenant,
