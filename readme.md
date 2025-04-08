@@ -49,3 +49,8 @@ Após terminar o loop, podemos exibir o que foi agregado em um "relatório mensa
 Algumas anotações que fiz durante a construção do projeto, não estão muito estruturadas pois era meu "dump de ideias" <br> 
 https://www.notion.so/Desafio-1c9e6c8ece2b808d9dcffd09199ceb22
 
+Há também testes unitários na geração de pulso, para executar o teste: 
+```
+cd pulsegenerator/
+go test
+```
