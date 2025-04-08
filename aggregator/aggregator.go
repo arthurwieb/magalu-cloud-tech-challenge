@@ -60,6 +60,7 @@ func (a *Aggregator) Stop() {
 	close(a.pulseChan)
 }
 
+// retorna um json para leitura. o retorno em []byte é necessário pois usamos o json.marshall
 func (a *Aggregator) GetTotals() ([]byte, error) {
 	a.Stop()
 	a.mu.Lock()

@@ -6,10 +6,6 @@ import (
 
 var TENANT_ID = []string{"1", "2", "3", "4", "5"}
 
-// type Emitter interface {
-// 	generateRandomPulse() Pulse
-// }
-
 type Pulse struct {
 	Tenant     string
 	ProductSKU string
@@ -21,7 +17,7 @@ type Pulse struct {
 // mock de dados de um pulse gerado
 func GenerateRandomPulse(day int) Pulse {
 	tenantName := "tenant_" + TENANT_ID[rand.Intn(len(TENANT_ID))]
-	amount := rand.Float32()*100 + 1 // ajustar isso, parece super não efetivo
+	amount := rand.Float32()*100 + 1
 
 	var newPulse Pulse
 	if rand.Intn(2) > 0 {
