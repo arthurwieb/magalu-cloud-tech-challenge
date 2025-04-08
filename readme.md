@@ -1,2 +1,36 @@
 link das anotações do projeto
 https://www.notion.so/Desafio-1c9e6c8ece2b808d9dcffd09199ceb22
+# Magalu Cloud - Desafio técnico - Sistema de Bilhetagem - Ingestor
+Sistema de monitoramento de consumo de recursos em nuvem que coleta e agrega pulsos de utilização (armazenamento e rede) para fins de cobrança.
+
+# Instalação
+```bash
+Instale a versão 1.24.1 ou superior do Golang - https://go.dev/doc/install
+```
+
+Após clonar o projeto, digite o comando na raiz do projeto
+```bash
+go run main.go
+```
+
+Você deve obter um resultado dos pulsos gerados pelo programa que vão estar agregados por cliente e produto com uma lista de consumo diário
+```
+Ex: 
+[
+ {
+  "tenant": "tenant_5",
+  "product_sku": "storage_1gb",
+  "usage_unit": "GB x seg",
+  "daily_usage": {
+   "1": 5929.662,
+   "10": 5936.264,
+   "11": 517.2528,
+   "12": 4382.1704,
+   "13": 8388.8,
+   "14": 2128.4072,
+   "16": 7054.875,
+   ...
+  }
+ },
+```
+
