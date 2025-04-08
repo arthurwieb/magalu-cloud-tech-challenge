@@ -1,5 +1,4 @@
-link das anotações do projeto
-https://www.notion.so/Desafio-1c9e6c8ece2b808d9dcffd09199ceb22
+
 # Magalu Cloud - Desafio técnico - Sistema de Bilhetagem - Ingestor
 Sistema de monitoramento de consumo de recursos em nuvem que coleta e agrega pulsos de utilização (armazenamento e rede) para fins de cobrança.
 
@@ -33,4 +32,20 @@ Ex:
   }
  },
 ```
+Como esse ingestor funciona?
+O sistema simula o monitoramento de recursos em nuvem através de pulsos de consumo, geramos 20 pulsos por dia durante 30 dias. Estrutura do pulso:
+```
+type Pulse struct {
+    Tenant     string    // "tenant_"
+    ProductSKU string    // "storage_1gb ou network_egress"
+    UsedAmount float64   // 60 (GB × seg) ou mb transferido
+    UsageUnit  string    // "GB × seg" ou "MB"
+}
+```
+Enquanto nosso loop executa, nosso Aggregator estará lendo e acumulando os dados conforme cliente(tenant) e serviço (product_sku).<br>
+Após terminar o loop, podemos exibir o que foi agregado em um "relatório mensal".
+
+
+Algumas anotações que fiz durante a construção do projeto, não estão muito estruturadas pois era meu "dump de ideias" <br> 
+https://www.notion.so/Desafio-1c9e6c8ece2b808d9dcffd09199ceb22
 
