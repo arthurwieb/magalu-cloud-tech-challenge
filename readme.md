@@ -1,5 +1,6 @@
 
 # Magalu Cloud - Desafio técnico - Sistema de Bilhetagem - Ingestor
+# Parte 1: https://docs.google.com/document/d/e/2PACX-1vQGCw6WuWHVMuBiK-ZKUmalws00GGwXZdynklOj4xwexQRznN6GNlGkt0qcmR9aWYB6JwGmt0DqJZwZ/pub <br>
 Sistema de monitoramento de consumo de recursos em nuvem que coleta e agrega pulsos de utilização (armazenamento e rede) para fins de cobrança.
 
 # Instalação
